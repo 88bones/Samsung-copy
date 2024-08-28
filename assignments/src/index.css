@@ -1,0 +1,13 @@
+*{
+    font-family: monospace;
+}
+
+.image-container img {
+    max-width: 100%;
+    height: 500px;
+    width: 300px;
+    display: block;
+    margin: auto;
+    object-fit: cover;
+}
+
