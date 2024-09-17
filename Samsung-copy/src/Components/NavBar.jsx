@@ -3,6 +3,7 @@ import samsung from '../images/samsung.png';
 import profile from '../images/profile.png';
 import trolley from '../images/trolley.png';
 import search from '../images/search.png';
+import ShopDD from './ShopDD';
 
 const NavBar = () => {
 
@@ -24,17 +25,15 @@ const NavBar = () => {
     'For Business',
   ];
 
-  // const ShopMenuItems=[
-  //   'Featured',
-  //   'Offers',
-  //   'Gift Ideas',
-  //   'Samsung Outlet'
-  // ]
+ const [isShopHovered,setIsShopHovered]=useState(false);
 
-  // const [DropDown,setDropDown]=useState(false);
-  // const toggleDropDown=()=>{
-  //   setDropDown(!DropDown);
-  // }
+ const handleMouseEnter=()=>{
+  setIsShopHovered(true);
+ };
+
+ const handleMouseLeave=()=>{
+  setIsShopHovered(false);
+ };
 
   return (
     <nav>
@@ -45,8 +44,19 @@ const NavBar = () => {
       <div className="menu-items">
         <ul type='none'>
           {MenuItems.map((MenuItem,index)=>(
-            <li key={index}>
-              <a href="">{MenuItem}</a></li>
+            <li key={index}
+              onMouseEnter={MenuItem==='Shop'?handleMouseEnter:null}
+            >
+              <a href="">{MenuItem}</a>
+              {MenuItem==='Shop' && isShopHovered &&(
+                <div className="dropdown"
+                  onMouseLeave={MenuItem==='Shop'?handleMouseLeave:null}
+                >
+                  <ShopDD/>
+                </div>
+              )}
+              </li>
+             
           ))}
         </ul>
       </div>
